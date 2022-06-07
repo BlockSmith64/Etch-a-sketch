@@ -31,3 +31,38 @@ const blackColor = function () {
 };
 
 blackColor();
+
+const rgbBtn = document.createElement("button");
+
+const rgbColor = function () {
+  rgbBtn.textContent = "RGB";
+  rgbBtn.addEventListener("click", function () {
+    pixels.forEach((pixel) =>
+      pixel.addEventListener("mouseover", function () {
+        let r = Math.floor(Math.random() * 256);
+        let g = Math.floor(Math.random() * 256);
+        let b = Math.floor(Math.random() * 256);
+        pixel.style.cssText = `background: rgb(${r}, ${g}, ${b});`;
+      })
+    );
+  });
+  btns.appendChild(rgbBtn);
+};
+
+rgbColor();
+
+const eraseBtn = document.createElement("button");
+
+const erase = function () {
+  eraseBtn.textContent = "ERASE";
+  eraseBtn.addEventListener("click", function () {
+    pixels.forEach((pixel) =>
+      pixel.addEventListener("mouseover", function () {
+        pixel.style.cssText = "background: #FFFFFF;";
+      })
+    );
+  });
+  btns.appendChild(eraseBtn);
+};
+
+erase();
