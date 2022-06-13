@@ -2,6 +2,10 @@
 const content = document.querySelector(".content");
 const container = document.querySelector(".container");
 const btns = document.querySelector(".btns");
+const blackBtn = document.querySelector(".btn-black");
+const rainbowBtn = document.querySelector(".btn-rainbow");
+const eraseBtn = document.querySelector(".btn-erasor");
+const resizeBtn = document.querySelector(".resize");
 
 //a function that creates any amount of divs based on given arguement value
 const board = function (size) {
@@ -16,38 +20,27 @@ const board = function (size) {
 
 board(16);
 
-const pixels = document.querySelectorAll(".pixel");
-
 const colorPicker = function (color) {
-  if (color === "black") {
-    pixels.forEach((pixel) =>
-      pixel.addEventListener("mouseover", function () {
-        pixel.style.cssText = "background: #000;";
-      })
-    );
-  } else if (color === "rainbow") {
-    console.log("rgb");
-    pixels.forEach((pixel) =>
-      pixel.addEventListener("mouseover", function () {
-        let randomNum1 = Math.floor(Math.random() * 256);
-        let randomNum2 = Math.floor(Math.random() * 256);
-        let randomNum3 = Math.floor(Math.random() * 256);
-        pixel.style.cssText = `background: rgb(${randomNum1}, ${randomNum2}, ${randomNum3});`;
-      })
-    );
-  } else if (color === "erase") {
-    console.log("erase");
-    pixels.forEach((pixel) =>
-      pixel.addEventListener("mouseover", function () {
-        pixel.style.cssText = "background: #FFFFF;";
-      })
-    );
-  }
+  const pixels = document.querySelectorAll(".pixel");
+  pixels.forEach((pixel) =>
+    pixel.addEventListener("mouseover", function () {
+      if (color === "black") {
+        pixel.style.background = "#000";
+      } else if (color === "rainbow") {
+        let num1 = Math.floor(Math.random() * 256);
+        let num2 = Math.floor(Math.random() * 256);
+        let num3 = Math.floor(Math.random() * 256);
+        pixel.style.cssText = `background: rgb(${num1}, ${num2}, ${num3});`;
+      } else if (color === "erase") {
+        pixel.style.background = "#FFF";
+      }
+    })
+  );
 };
 
 const blackColor = function () {
-  const blackBtn = document.querySelector(".btn-black");
   blackBtn.addEventListener("click", function () {
+    //colorPicker("black");
     colorPicker("black");
   });
 };
@@ -55,7 +48,6 @@ const blackColor = function () {
 blackColor();
 
 const rainbow = function () {
-  const rainbowBtn = document.querySelector(".btn-rainbow");
   rainbowBtn.addEventListener("click", function () {
     colorPicker("rainbow");
   });
@@ -64,7 +56,6 @@ const rainbow = function () {
 rainbow();
 
 const erase = function () {
-  const eraseBtn = document.querySelector(".btn-erasor");
   eraseBtn.addEventListener("click", function () {
     colorPicker("erase");
   });

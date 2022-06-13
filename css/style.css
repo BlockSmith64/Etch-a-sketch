@@ -15,3 +15,9 @@
   height: 500px;
   border: 1px solid #000;
 }
+
+.btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
