@@ -3,9 +3,12 @@ const content = document.querySelector(".content");
 const container = document.querySelector(".container");
 const btns = document.querySelector(".btns");
 const blackBtn = document.querySelector(".btn-black");
-const rainbowBtn = document.querySelector(".btn-rainbow");
+const randomColorBtn = document.querySelector(".btn-random");
 const eraseBtn = document.querySelector(".btn-erasor");
-const resizeBtn = document.querySelector(".resize");
+const resizeBtn = document.querySelector(".btn-size");
+const resetBtn = document.querySelector(".btn-reset");
+
+let defaultSize = 16;
 
 //a function that creates any amount of divs based on given arguement value
 const board = function (size) {
@@ -14,11 +17,11 @@ const board = function (size) {
     container.style.gridTemplateRows = `repeat(${size}, 1fr)`;
     container.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
     container.appendChild(divs).classList.add("pixel");
-    //divs.style.cssText = "border: 1px solid pink;";
+    divs.style.cssText = "border: 1px solid pink;";
   }
 };
 
-board(16);
+board(defaultSize);
 
 const colorPicker = function (color) {
   const pixels = document.querySelectorAll(".pixel");
@@ -26,7 +29,7 @@ const colorPicker = function (color) {
     pixel.addEventListener("mouseover", function () {
       if (color === "black") {
         pixel.style.background = "#000";
-      } else if (color === "rainbow") {
+      } else if (color === "random") {
         let num1 = Math.floor(Math.random() * 256);
         let num2 = Math.floor(Math.random() * 256);
         let num3 = Math.floor(Math.random() * 256);
@@ -46,13 +49,13 @@ const blackColor = function () {
 
 blackColor();
 
-const rainbow = function () {
-  rainbowBtn.addEventListener("click", function () {
-    colorPicker("rainbow");
+const randomColor = function () {
+  randomColorBtn.addEventListener("click", function () {
+    colorPicker("random");
   });
 };
 
-rainbow();
+randomColor();
 
 const erase = function () {
   eraseBtn.addEventListener("click", function () {
@@ -67,17 +70,37 @@ const removeDivs = function () {
   pixels.forEach((pixel) => pixel.remove());
 };
 
-const resize = function () {
+const resize = function (userInput) {
   resizeBtn.addEventListener("click", function () {
-    const userInput = prompt("Enter a number");
+    userInput = prompt("Enter a number");
+    defaultSize = Number(userInput);
     if (userInput >= 1 && userInput <= 100) {
       removeDivs();
       board(userInput);
       blackColor();
-      rainbow();
+      randomColor();
       erase();
     }
   });
 };
 
-resize();
+resize(defaultSize);
+
+const reset = function () {
+  resetBtn.addEventListener("click", function () {
+    removeDivs();
+    board(defaultSize);
+    blackColor();
+    randomColor();
+    erase();
+    if (defaultSize !== 16) {
+      removeDivs();
+      board(defaultSize);
+      blackColor();
+      randomColor();
+      erase();
+    }
+  });
+};
+
+reset();
