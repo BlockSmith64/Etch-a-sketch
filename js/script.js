@@ -14,7 +14,7 @@ const board = function (size) {
     container.style.gridTemplateRows = `repeat(${size}, 1fr)`;
     container.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
     container.appendChild(divs).classList.add("pixel");
-    divs.style.cssText = "border: 1px solid pink;";
+    //divs.style.cssText = "border: 1px solid pink;";
   }
 };
 
@@ -40,7 +40,6 @@ const colorPicker = function (color) {
 
 const blackColor = function () {
   blackBtn.addEventListener("click", function () {
-    //colorPicker("black");
     colorPicker("black");
   });
 };
@@ -62,3 +61,23 @@ const erase = function () {
 };
 
 erase();
+
+const removeDivs = function () {
+  const pixels = document.querySelectorAll(".pixel");
+  pixels.forEach((pixel) => pixel.remove());
+};
+
+const resize = function () {
+  resizeBtn.addEventListener("click", function () {
+    const userInput = prompt("Enter a number");
+    if (userInput >= 1 && userInput <= 100) {
+      removeDivs();
+      board(userInput);
+      blackColor();
+      rainbow();
+      erase();
+    }
+  });
+};
+
+resize();
