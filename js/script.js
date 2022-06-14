@@ -17,7 +17,6 @@ const board = function (size) {
     container.style.gridTemplateRows = `repeat(${size}, 1fr)`;
     container.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
     container.appendChild(divs).classList.add("pixel");
-    divs.style.cssText = "border: 1px solid pink;";
   }
 };
 
@@ -72,7 +71,9 @@ const removeDivs = function () {
 
 const resize = function (userInput) {
   resizeBtn.addEventListener("click", function () {
-    userInput = prompt("Enter a number");
+    userInput = prompt(
+      "Enter a number. Size is calculated using the square of the number."
+    );
     defaultSize = Number(userInput);
     if (userInput >= 1 && userInput <= 100) {
       removeDivs();
@@ -80,6 +81,8 @@ const resize = function (userInput) {
       blackColor();
       randomColor();
       erase();
+    } else {
+      alert("Enter a number between 1-100!");
     }
   });
 };

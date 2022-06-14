@@ -1,5 +1,12 @@
+body {
+  font-family: "Press Start 2P", cursive;
+  background-color: #222;
+  color: #eee;
+}
+
 .header {
-  font-size: 40px;
+  font-size: 32px;
+  margin-top: 30px;
 }
 
 .content {
@@ -7,6 +14,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 10px;
 }
 
 .container {
@@ -14,10 +22,27 @@
   width: 500px;
   height: 500px;
   border: 1px solid #000;
+  background-color: #fff;
 }
 
 .btns {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 10px;
+}
+
+.btn {
+  border: none;
+  background-color: #eee;
+  color: #222;
+  font-size: 10px;
+  font-family: "Press Start 2P", cursive;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+button:active {
+  transform: scale(1.2);
+  box-shadow: 0 0 15px 1px;
 }
